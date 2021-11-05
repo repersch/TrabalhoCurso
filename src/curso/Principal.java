@@ -1,8 +1,10 @@
 package curso;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Principal {
+
 
     public static void main(String[] args) {
 
@@ -96,12 +98,11 @@ public class Principal {
             System.out.println("Alterar dados da disciplina: " + disciplina.getNome());
             System.out.print("Ementa: ");
             disciplina.setEmenta(scanner.nextLine());
-            System.out.print("Livro bibliografia: ");
-            disciplina.setLivroBibliografia(scanner.nextLine());
+
             System.out.print("Número de créditos: ");
             disciplina.setNumeroCreditos(scanner.nextInt());
             System.out.print("Carga horária: ");
-            disciplina.setCaragaHoraria(scanner.nextInt());
+            disciplina.setCargaHoraria(scanner.nextInt());
 
             submenuDisciplina.editarDisciplina(sigla, disciplina);
             System.out.println("Dados alterados com sucesso.");
@@ -125,14 +126,17 @@ public class Principal {
         String nome = scanner.nextLine();
         System.out.print("Ementa: ");
         String ementa = scanner.nextLine();
-        System.out.print("Livro bibliografia: ");
-        String livroBibliografia = scanner.nextLine();
+        ArrayList<String> livrosBibliograficos = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            System.out.print("Livro bibliografia " + (i + 1) + ": ");
+            livrosBibliograficos.add(scanner.nextLine());
+        }
         System.out.print("Número de créditos: ");
         Integer numeroCreditos = scanner.nextInt();
         System.out.print("Carga horária: ");
         Integer caragaHoraria = scanner.nextInt();
 
-        return new Disciplina(sigla, nome, ementa, livroBibliografia, numeroCreditos, caragaHoraria);
+        return new Disciplina(sigla, nome, ementa, livrosBibliograficos, numeroCreditos, caragaHoraria);
 
     }
 
@@ -175,12 +179,21 @@ public class Principal {
         String areaPesquisa = scanner.nextLine();
         System.out.print("Universidade: ");
         String universidade = scanner.nextLine();
-        System.out.print("E-mail: ");
-        String email = scanner.nextLine();
-        System.out.print("Telefone: ");
-        String telefone = scanner.nextLine();
 
-        return new Professor(registroFuncional, nome, dataNascimento, sexo, areaPesquisa, universidade, email, telefone);
+        ArrayList<String> emails = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            System.out.print("E-mail " + (i + 1) + ": ");
+            emails.add(scanner.nextLine());
+        }
+
+        ArrayList<String> telefones = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            System.out.print("Telefone " + (i + 1) + ": ");
+            telefones.add(scanner.nextLine());
+        }
+
+
+        return new Professor(registroFuncional, nome, dataNascimento, sexo, areaPesquisa, universidade, emails, telefones);
 
     }
 
@@ -200,10 +213,6 @@ public class Principal {
             professor.setAreaPesquisa(scanner.nextLine());
             System.out.print("Universidade: ");
             professor.setUniversidade(scanner.nextLine());
-            System.out.print("E-mail: ");
-            professor.setEmail(scanner.nextLine());
-            System.out.print("Telefone: ");
-            professor.setTelefone(scanner.nextLine());
 
             submenuProfessor.editarProfessor(registroFuncional, professor);
             System.out.println("\nDados alterados com sucesso.");
@@ -312,14 +321,34 @@ public class Principal {
 
 
     private static SubmenuProfessor criaDadosProfessores() {
+
+        ArrayList<String> emails = new ArrayList<>();
+        emails.add("minerva@mail.com");
+        emails.add("mcgonagall@mail.com");
+
+        ArrayList<String> telefones = new ArrayList<>();
+        telefones.add("(16)998562544");
+        telefones.add("(16)998854544");
+        telefones.add("(16)998562958");
+
         Professor p1 = new Professor("1212589-45",
                 "Minerva McGonagall",
                 "13/11/1967",
                 "feminino",
                 "Transfiguração",
                 "USP",
-                "minerva@mail.com",
-                "(16)998562544");
+                emails,
+                telefones);
+
+        ArrayList<String> emails2 = new ArrayList<>();
+        emails2.add("hagrid@mail.com");
+        emails2.add("rubeo@mail.com");
+        emails2.add("rubeohagrid@mail.com");
+
+        ArrayList<String> telefones2 = new ArrayList<>();
+        telefones2.add("(16)998547125");
+        telefones2.add("(16)945854544");
+        telefones2.add("(16)998964515");
 
         Professor p2 = new Professor("1523659-21",
                 "Rúbeo Hagrid",
@@ -327,8 +356,16 @@ public class Principal {
                 "masculino",
                 "Biologia",
                 "Ufscar",
-                "hagrid@mail.com",
-                "(16)998547125");
+                emails2,
+                telefones2);
+
+        ArrayList<String> emails3 = new ArrayList<>();
+        emails3.add("snape@mail.com");
+        emails3.add("severo@mail.com");
+
+        ArrayList<String> telefones3 = new ArrayList<>();
+        telefones3.add("(16)985412653");
+        telefones3.add("(16)988542651");
 
         Professor p3 = new Professor("8523652-14",
                 "Severo Snape",
@@ -336,8 +373,17 @@ public class Principal {
                 "masculino",
                 "Quimica",
                 "USP",
-                "snape@mail.com",
-                "(16)985412653");
+                emails3,
+                telefones3);
+
+        ArrayList<String> emails4 = new ArrayList<>();
+        emails4.add("lupin@mail.com");
+        emails4.add("remo@mail.com");
+        emails4.add("remolupin@mail.com");
+
+        ArrayList<String> telefones4 = new ArrayList<>();
+        telefones4.add("(16)998256325");
+        telefones4.add("(16)988484561");
 
         Professor p4 = new Professor("1256329-65",
                 "Remo Lupin",
@@ -345,8 +391,8 @@ public class Principal {
                 "masculino",
                 "Física",
                 "Ufscar",
-                "mlupin@mail.com",
-                "(16)998256325");
+                emails4,
+                telefones4);
 
         SubmenuProfessor submenuProfessor = new SubmenuProfessor();
         submenuProfessor.cadastrarProfessor(p1);
@@ -357,11 +403,20 @@ public class Principal {
     }
 
 
+
     private static SubmenuDisciplina criaDadosDisciplinas() {
-        Disciplina d1 = new Disciplina("1001", "Programação Orientada a Objetos", "1000123-12", "POO na prática", 8, 120);
-        Disciplina d2 = new Disciplina("1002", "Programação WEB", "1000133-03", "JavaScript na prática", 4, 60);
-        Disciplina d3 = new Disciplina("1003", "Engenharia de Software", "1000177-08", "Engenharia na prática", 8, 120);
-        Disciplina d4 = new Disciplina("1004", "Probabilidade e Estatística", "1000144-79", "Calculando", 8, 120);
+
+        ArrayList<String> livros = new ArrayList<>();
+        livros.add("POO na prática");
+        livros.add("JavaScript na prática");
+        livros.add("Engenharia na prática");
+        livros.add("Calculando");
+
+
+        Disciplina d1 = new Disciplina("1001", "Programação Orientada a Objetos", "1000123-12", livros, 8, 120);
+        Disciplina d2 = new Disciplina("1002", "Programação WEB", "1000133-03", livros, 4, 60);
+        Disciplina d3 = new Disciplina("1003", "Engenharia de Software", "1000177-08", livros, 8, 120);
+        Disciplina d4 = new Disciplina("1004", "Probabilidade e Estatística", "1000144-79", livros, 8, 120);
 
         SubmenuDisciplina submenuDisciplina = new SubmenuDisciplina();
         submenuDisciplina.cadastrarDisciplina(d1);
@@ -370,6 +425,8 @@ public class Principal {
         submenuDisciplina.cadastrarDisciplina(d4);
 
         return submenuDisciplina;
+
+
     }
 
 }

@@ -1,7 +1,6 @@
 package curso;
 
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.ArrayList;
 
 public class Professor {
 
@@ -11,21 +10,33 @@ public class Professor {
     private String sexo;
     private String areaPesquisa;
     private String universidade;
-    private String email;
-    private String telefone;
+    private ArrayList<String> emails = new ArrayList<>();
+    private ArrayList<String> telefones = new ArrayList<>();
 
     public Professor() {
     }
 
-    public Professor(String registroFuncional, String nome, String dataNascimento, String sexo, String areaPesquisa, String universidade, String email, String telefone) {
+    public Professor(String registroFuncional, String nome, String dataNascimento, String sexo, String areaPesquisa, String universidade, ArrayList<String> emails, ArrayList<String> telefones) {
         this.registroFuncional = registroFuncional;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.sexo = sexo;
         this.areaPesquisa = areaPesquisa;
         this.universidade = universidade;
-        this.email = email;
-        this.telefone = telefone;
+        this.emails = emails;
+        this.telefones = telefones;
+    }
+
+    public void adicionaEmail (String email) {
+        if (email != null) {
+            emails.add(email);
+        }
+    }
+
+    public void adicionaTelefone (String telefone) {
+        if (telefone != null) {
+            telefones.add(telefone);
+        }
     }
 
     public String getRegistroFuncional() {
@@ -64,20 +75,20 @@ public class Professor {
         this.universidade = universidade;
     }
 
-    public String getEmail() {
-        return email;
+    public ArrayList<String> getEmails() {
+        return emails;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmails(ArrayList<String> emails) {
+        this.emails = emails;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public ArrayList<String> getTelefones() {
+        return telefones;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setTelefones(ArrayList<String> telefones) {
+        this.telefones = telefones;
     }
 
     @Override
@@ -89,8 +100,8 @@ public class Professor {
                 "| Sexo: '" + sexo + '\'' +
                 "| Área de pesquisa: '" + areaPesquisa + '\'' +
                 "| Universidade: '" + universidade + '\'' +
-                "| E-mail: '" + email + '\'' +
-                "| Telefone: '" + telefone + '\'' +
+                "| E-mails: '" + emails + '\'' +
+                "| Telefones: '" + telefones + '\'' +
                 ']';
     }
 }

@@ -1,29 +1,39 @@
 package curso;
 
+import java.util.ArrayList;
+
 public class Disciplina {
 
     private String sigla;
     private String nome;
     private String ementa;
-    private String livroBibliografia;
+    private ArrayList<String> livrosBibliografia;
     private Integer numeroCreditos;
-    private Integer caragaHoraria;
+    private Integer cargaHoraria;
 
     public Disciplina() {
     }
 
-    public Disciplina(String sigla, String nome, String ementa, String livroBibliografia, Integer numeroCreditos, Integer caragaHoraria) {
+    public Disciplina(String sigla, String nome, String ementa, ArrayList<String> livrosBibliografia, Integer numeroCreditos, Integer caragaHoraria) {
         this.sigla = sigla;
         this.nome = nome;
         this.ementa = ementa;
-        this.livroBibliografia = livroBibliografia;
+        this.livrosBibliografia = livrosBibliografia;
         this.numeroCreditos = numeroCreditos;
-        this.caragaHoraria = caragaHoraria;
+        this.cargaHoraria = caragaHoraria;
+    }
+
+    public void adicionaLivro(String livro) {
+        if (livro != null) {
+            livrosBibliografia.add(livro);
+        }
     }
 
     public String getSigla() {
         return sigla;
     }
+
+    public void setSigla(String sigla){ this.sigla = sigla; }
 
     public String getNome() {
         return nome;
@@ -41,14 +51,6 @@ public class Disciplina {
         this.ementa = ementa;
     }
 
-    public String getLivroBibliografia() {
-        return livroBibliografia;
-    }
-
-    public void setLivroBibliografia(String livroBibliografia) {
-        this.livroBibliografia = livroBibliografia;
-    }
-
     public Integer getNumeroCreditos() {
         return numeroCreditos;
     }
@@ -57,23 +59,31 @@ public class Disciplina {
         this.numeroCreditos = numeroCreditos;
     }
 
-    public Integer getCaragaHoraria() {
-        return caragaHoraria;
+    public Integer getCargaHoraria() {
+        return cargaHoraria;
     }
 
-    public void setCaragaHoraria(Integer caragaHoraria) {
-        this.caragaHoraria = caragaHoraria;
+    public void setCargaHoraria(Integer cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
+    }
+
+    public ArrayList<String> getLivrosBibliografia() {
+        return livrosBibliografia;
+    }
+
+    public void setLivrosBibliografia(ArrayList<String> livrosBibliografia) {
+        this.livrosBibliografia = livrosBibliografia;
     }
 
     @Override
     public String toString() {
-        return "Disciplina: [" +
+        return "Disciplina [" +
                 "Sigla: '" + sigla + '\'' +
                 " | Nome: '" + nome + '\'' +
-                " | ementa: '" + ementa + '\'' +
-                " | livroBibliografia: '" + livroBibliografia + '\'' +
-                " | numeroCreditos: " + numeroCreditos +
-                " | caragaHoraria: " + caragaHoraria +
+                " | Ementa: '" + ementa + '\'' +
+                " | Livros Bibliografia: " + livrosBibliografia +
+                " | Número de Créditos: " + numeroCreditos +
+                " | Carga Horária: " + cargaHoraria +
                 ']';
     }
 }
